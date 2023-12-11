@@ -1,12 +1,17 @@
 // initialize dropdown
 let selector = d3.select("#selDataset");
-
+console.log("view if data are fatched: ", selector);
 // Fetch data
 d3.json("samples.json").then((data) => {
+    
+    //assign data.names array to sampleID array
     let sampleID = data.names;
+    console.log("verify if dropdown ID are filtered: ", sampleID);
 
     // First sample to build the initial plots
     let firstSample = sampleID[0];
+    // Verify firstSample for init program start
+    console.log("Init ID at start :", firstSample);
 
     // Populate dropdown select options
     selector.selectAll("option")
@@ -35,6 +40,7 @@ function buildMetadata(sample) {
         // Filter metadata with desired sample number
         let metadataArray = metadata.filter(sampleObject => sampleObject.id == sample);
         let result = metadataArray[0];
+        console.log("Verify Sample ID data match for Panel: ", result);
 
         // Select the panel with id
         let panel = d3.select("#sample-metadata");
